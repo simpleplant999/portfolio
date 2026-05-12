@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      (function () {
+        try {
+          var k = "portfolio-theme";
+          var t = localStorage.getItem(k);
+          if (t === "light") document.documentElement.classList.remove("dark");
+          else if (t === "dark") document.documentElement.classList.add("dark");
+          else {
+            if (window.matchMedia("(prefers-color-scheme: light)").matches)
+              document.documentElement.classList.remove("dark");
+            else document.documentElement.classList.add("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Cedric Labrador — Frontend developer building responsive, high-performing web apps with React, Next.js, WordPress, and Tailwind CSS."
+    />
+    <title>Cedric Labrador — Frontend Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
+              display: ['"Instrument Serif"', "Georgia", "serif"],
+            },
+            colors: {
+              ink: {
+                950: "#0a0c10",
+                900: "#11141c",
+                800: "#1a1f2b",
+                700: "#252b3a",
+              },
+              coral: {
+                DEFAULT: "#f06b52",
+                dim: "#c94d3a",
+              },
+            },
+            boxShadow: {
+              glow: "0 0 60px -12px rgba(240, 107, 82, 0.35)",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      html:not(.dark) {
+        color-scheme: light;
+      }
+      html.dark {
+        color-scheme: dark;
+      }
+      ::selection {
+        background: rgba(240, 107, 82, 0.25);
+        color: #f8fafc;
+      }
+      .dark ::selection {
+        color: #f8fafc;
+      }
+      :root:not(.dark) ::selection {
+        background: rgba(240, 107, 82, 0.2);
+        color: #0f172a;
+      }
+      /* Simple Icons: natural on light, inverted on dark */
+      .skill-icon-mono {
+        filter: none;
+        opacity: 0.92;
+      }
+      .dark .skill-icon-mono {
+        filter: brightness(0) invert(1) opacity(0.88);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-slate-50 text-slate-800 antialiased [font-feature-settings:'ss01'] dark:bg-ink-950 dark:text-slate-200"
+  >
+    <!-- Ambient -->
+    <div
+      class="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
+      aria-hidden="true"
+    >
+      <div
+        class="absolute -left-1/4 top-0 h-[520px] w-[520px] rounded-full bg-coral/15 blur-[120px] dark:bg-coral/10"
+      ></div>
+      <div
+        class="absolute -right-1/4 bottom-0 h-[480px] w-[480px] rounded-full bg-indigo-400/15 blur-[110px] dark:bg-indigo-500/10"
+      ></div>
+      <div
+        class="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(248,250,252,0.92),#f8fafc)] dark:bg-[linear-gradient(to_bottom,rgba(10,12,16,0.3),#0a0c10)]"
+      ></div>
+    </div>
+
+    <header
+      class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur-md dark:border-white/5 dark:bg-ink-950/80"
+    >
+      <div
+        class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8"
+      >
+        <a href="#" class="group flex items-center gap-2">
+          <span
+            class="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-coral to-coral-dim text-sm font-bold text-white shadow-glow transition group-hover:scale-105"
+            >CL</span
+          >
+          <span
+            class="font-semibold tracking-tight text-ink-950 dark:text-white"
+            >Cedric Labrador</span
+          >
+        </a>
+        <nav
+          class="hidden items-center gap-8 text-sm font-medium text-slate-600 md:flex dark:text-slate-400"
+        >
+          <a href="#about" class="transition hover:text-ink-950 dark:hover:text-white"
+            >About</a
+          >
+          <a
+            href="#experience"
+            class="transition hover:text-ink-950 dark:hover:text-white"
+            >Experience</a
+          >
+          <a href="#work" class="transition hover:text-ink-950 dark:hover:text-white"
+            >Work</a
+          >
+          <a
+            href="#projects"
+            class="transition hover:text-ink-950 dark:hover:text-white"
+            >Projects</a
+          >
+          <a
+            href="#contact"
+            class="transition hover:text-ink-950 dark:hover:text-white"
+            >Contact</a
+          >
+        </nav>
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button
+            type="button"
+            id="theme-toggle"
+            class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-ink-950 shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:text-white dark:shadow-none dark:hover:bg-white/10"
+            aria-label="Toggle color theme"
+            aria-pressed="false"
+            title="Theme"
+          >
+            <span class="hidden dark:inline" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            </span>
+            <span class="inline dark:hidden" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            </span>
+          </button>
+          <a
+            href="https://drive.google.com/file/d/17dDhGzM4rJNRXvb2J304MuC3FObcjgMB/view"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hidden rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-ink-950 transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-coral/10 sm:inline-flex"
+            >CV</a
+          >
+          <a
+            href="#contact"
+            class="rounded-full bg-coral px-4 py-2 text-sm font-semibold text-white shadow-glow transition hover:bg-coral-dim"
+            >Let’s talk</a
+          >
+        </div>
+      </div>
+      <nav
+        class="flex gap-1 overflow-x-auto border-t border-slate-200/80 px-4 py-2 text-xs font-medium text-slate-600 md:hidden dark:border-white/5 dark:text-slate-500 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+        aria-label="Section navigation"
+      >
+        <a href="#about" class="shrink-0 rounded-full px-3 py-1.5 hover:bg-slate-100 hover:text-ink-950 dark:hover:bg-white/5 dark:hover:text-white">About</a>
+        <a href="#experience" class="shrink-0 rounded-full px-3 py-1.5 hover:bg-slate-100 hover:text-ink-950 dark:hover:bg-white/5 dark:hover:text-white">Experience</a>
+        <a href="#work" class="shrink-0 rounded-full px-3 py-1.5 hover:bg-slate-100 hover:text-ink-950 dark:hover:bg-white/5 dark:hover:text-white">Work</a>
+        <a href="#projects" class="shrink-0 rounded-full px-3 py-1.5 hover:bg-slate-100 hover:text-ink-950 dark:hover:bg-white/5 dark:hover:text-white">Projects</a>
+        <a href="#contact" class="shrink-0 rounded-full px-3 py-1.5 hover:bg-slate-100 hover:text-ink-950 dark:hover:bg-white/5 dark:hover:text-white">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="relative px-4 pb-20 pt-16 sm:px-6 sm:pt-24 lg:px-8">
+        <div class="mx-auto max-w-6xl">
+          <p
+            class="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium uppercase tracking-widest text-slate-500 shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-slate-400 dark:shadow-none"
+          >
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400"></span>
+            Open to opportunities
+          </p>
+          <h1
+            class="font-display text-5xl leading-[1.05] text-ink-950 sm:text-6xl lg:text-7xl dark:text-white"
+          >
+            Frontend developer
+            <span class="block italic text-coral">with pixel-level care.</span>
+          </h1>
+          <p
+            class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl dark:text-slate-400"
+          >
+            Hi, I’m <strong class="font-semibold text-ink-950 dark:text-slate-200">Cedric</strong
+            >—I build responsive, high-performing web applications. I mainly work
+            with React, Next.js, Tailwind CSS, Bootstrap, and WordPress, plus
+            Node.js, Laravel, .NET, GoHighLevel, and cloud tooling on Vercel
+            and AWS. I use AI-assisted workflows to move faster while keeping
+            code clean and maintainable, and I apply SEO basics around structure,
+            speed, and best practices.
+          </p>
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a
+              href="#work"
+              class="inline-flex items-center justify-center rounded-full bg-ink-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 dark:bg-white dark:text-ink-950 dark:hover:bg-slate-200"
+              >View selected work</a
+            >
+            <a
+              href="mailto:cedriclabrador@gmail.com"
+              class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-ink-950 transition hover:border-coral/50 hover:bg-slate-50 dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:border-coral/40 dark:hover:bg-white/10"
+              >Email me</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section
+        id="about"
+        class="border-y border-slate-200/80 bg-white/60 px-4 py-20 sm:px-6 lg:px-8 dark:border-white/5 dark:bg-ink-900/50"
+      >
+        <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <h2 class="font-display text-4xl text-ink-950 sm:text-5xl dark:text-white">
+              About me
+            </h2>
+            <p class="mt-4 text-slate-600 dark:text-slate-400">
+              BS Information Technology, Gordon College (2015–2019). I’ve spent
+              years shipping client sites and product interfaces—from WordPress
+              and funnel builds to React apps and API-driven experiences.
+            </p>
+          </div>
+          <dl class="grid gap-6 sm:grid-cols-2">
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm dark:border-white/10 dark:bg-ink-800/60 dark:shadow-none">
+              <dt class="text-xs font-semibold uppercase tracking-wider text-coral">
+                Focus
+              </dt>
+              <dd class="mt-2 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                Responsive UI, performance, conversions, and maintainable
+                component patterns.
+              </dd>
+            </div>
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm dark:border-white/10 dark:bg-ink-800/60 dark:shadow-none">
+              <dt class="text-xs font-semibold uppercase tracking-wider text-coral">
+                Collaboration
+              </dt>
+              <dd class="mt-2 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                Figma-to-code workflows with designers and tight coordination
+                with backend teams.
+              </dd>
+            </div>
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm dark:border-white/10 dark:bg-ink-800/60 dark:shadow-none">
+              <dt class="text-xs font-semibold uppercase tracking-wider text-coral">
+                Delivery
+              </dt>
+              <dd class="mt-2 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                CI/CD on Vercel and AWS, modular codebases, and pragmatic SEO.
+              </dd>
+            </div>
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm dark:border-white/10 dark:bg-ink-800/60 dark:shadow-none">
+              <dt class="text-xs font-semibold uppercase tracking-wider text-coral">
+                Stack snapshot
+              </dt>
+              <dd class="mt-2 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                Vue &amp; React, Next.js, NestJS, TypeScript, Tailwind, Docker,
+                REST, WordPress, GHL.
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section id="experience" class="px-4 py-20 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-6xl">
+          <h2 class="font-display text-4xl text-ink-950 sm:text-5xl dark:text-white">
+            Experience
+          </h2>
+          <p class="mt-3 max-w-2xl text-slate-600 dark:text-slate-400">
+            Highlights from my CV—full timeline available in my downloadable
+            résumé.
+          </p>
+          <ol class="relative mt-12 space-y-10 border-l border-slate-200 pl-8 dark:border-white/10">
+            <li class="relative">
+              <span
+                class="absolute -left-[39px] top-1.5 h-3 w-3 rounded-full border-2 border-coral bg-white dark:bg-ink-950"
+              ></span>
+              <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <h3 class="text-lg font-semibold text-ink-950 dark:text-white">
+                  WordPress Developer
+                </h3>
+                <span class="text-sm text-slate-500 dark:text-slate-500"
+                  >Jan 2025 – Mar 2026</span
+                >
+              </div>
+              <p class="text-sm font-medium text-coral">
+                New Wave Digital Marketing
+              </p>
+              <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-600 dark:text-slate-400">
+                <li>
+                  Responsive WordPress builds from Figma; Tailwind CSS &amp;
+                  Bootstrap.
+                </li>
+                <li>
+                  Go High Level funnels and landing pages focused on conversion
+                  and UX.
+                </li>
+                <li>Reusable components and consistent theming across clients.</li>
+              </ul>
+              <p class="mt-2 text-xs text-slate-500 dark:text-slate-500">
+                WordPress · Elementor · GHL · React · Node · Tailwind
+              </p>
+            </li>
+            <li class="relative">
+              <span
+                class="absolute -left-[39px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-300 bg-white dark:border-white/30 dark:bg-ink-950"
+              ></span>
+              <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <h3 class="text-lg font-semibold text-ink-950 dark:text-white">
+                  Front End Developer
+                </h3>
+                <span class="text-sm text-slate-500 dark:text-slate-500"
+                  >Oct 2024 – Nov 2025</span
+                >
+              </div>
+              <p class="text-sm font-medium text-coral">TopTrailHorse LLC</p>
+              <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-600 dark:text-slate-400">
+                <li>Laravel frontend.</li>
+                <li>React frontend and API integration.</li>
+                <li>Tailwind CSS.</li>
+              </ul>
+              <p class="mt-2 text-xs text-slate-500 dark:text-slate-500">
+                Laravel · React · Tailwind CSS
+              </p>
+            </li>
+            <li class="relative">
+              <span
+                class="absolute -left-[39px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-300 bg-white dark:border-white/30 dark:bg-ink-950"
+              ></span>
+              <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <h3 class="text-lg font-semibold text-ink-950 dark:text-white">
+                  Front-End Developer
+                </h3>
+                <span class="text-sm text-slate-500">Mar 2021 – Oct 2025</span>
+              </div>
+              <p class="text-sm font-medium text-coral">Webpuppies</p>
+              <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-600 dark:text-slate-400">
+                <li>
+                  Figma-to-production UI with Tailwind CSS and Bootstrap.
+                </li>
+                <li>REST integrations and data-driven features.</li>
+                <li>CI/CD with Vercel and AWS; .NET frontends consuming APIs.</li>
+              </ul>
+              <p class="mt-2 text-xs text-slate-500 dark:text-slate-500">
+                Vue · React · Laravel · Node · Next.js · NestJS · WordPress ·
+                TypeScript · Docker · .NET · Vercel · AWS
+              </p>
+            </li>
+            <li class="relative">
+              <span
+                class="absolute -left-[39px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-300 bg-white dark:border-white/30 dark:bg-ink-950"
+              ></span>
+              <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <h3 class="text-lg font-semibold text-ink-950 dark:text-white">
+                  Web Developer (Part-Time)
+                </h3>
+                <span class="text-sm text-slate-500">Feb 2021 – Oct 2023</span>
+              </div>
+              <p class="text-sm font-medium text-coral">Meridian Remote Teams</p>
+              <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-600 dark:text-slate-400">
+                <li>WordPress builds, APIs, and plugin compatibility.</li>
+                <li>Core, theme, and plugin maintenance with performance tuning.</li>
+              </ul>
+              <p class="mt-2 text-xs text-slate-500 dark:text-slate-500">WordPress · PHP · JavaScript</p>
+            </li>
+            <li class="relative">
+              <span
+                class="absolute -left-[39px] top-1.5 h-3 w-3 rounded-full border-2 border-slate-300 bg-white dark:border-white/30 dark:bg-ink-950"
+              ></span>
+              <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <h3 class="text-lg font-semibold text-ink-950 dark:text-white">Web Developer</h3>
+                <span class="text-sm text-slate-500">Sep 2019 – Dec 2020</span>
+              </div>
+              <p class="text-sm font-medium text-coral">Unistop Outsourcing</p>
+              <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-600 dark:text-slate-400">
+                <li>PDF-to-responsive HTML/CSS implementations.</li>
+                <li>API integration for richer functionality.</li>
+              </ul>
+              <p class="mt-2 text-xs text-slate-500 dark:text-slate-500">Vue.js · JavaScript · Bootstrap</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section
+        class="border-y border-slate-200/80 bg-slate-50/80 px-4 py-16 sm:px-6 lg:px-8 dark:border-white/5 dark:bg-ink-900/40"
+      >
+        <div class="mx-auto max-w-6xl">
+          <h2 class="font-display text-3xl text-ink-950 sm:text-4xl dark:text-white">
+            Technical skills
+          </h2>
+          <ul
+            class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
+            role="list"
+            aria-label="Technical skills"
+          >
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="HTML"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/html5/html5-original.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">HTML</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="CSS"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/css3/css3-original.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">CSS</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="JavaScript"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/javascript/javascript-original.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">JavaScript</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="TypeScript"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/typescript/typescript-original.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">TypeScript</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="Vue.js"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/vuejs/vuejs-original.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">Vue.js</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="React"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/react/react-original.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">React</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="Next.js"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nextjs/nextjs-original.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain invert-0 dark:invert"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">Next.js</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="Tailwind CSS"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/tailwindcss/tailwindcss-original.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">Tailwind CSS</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="Bootstrap"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/bootstrap/bootstrap-original.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">Bootstrap</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="WordPress"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/wordpress/wordpress-plain.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">WordPress</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="Elementor"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/npm/simple-icons@11.14.0/icons/elementor.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="skill-icon-mono h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">Elementor</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="PHP"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/php/php-original.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">PHP</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="Laravel"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/laravel/laravel-original.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">Laravel</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="Node.js"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nodejs/nodejs-original.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">Node.js</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="NestJS"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nestjs/nestjs-original.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">NestJS</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title=".NET"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/dot-net/dot-net-original.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">.NET</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title=".NET Core 8"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/dotnetcore/dotnetcore-plain.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">.NET Core 8</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="Entity Framework"
+            >
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23512BD4'/%3E%3Ctext x='16' y='21' text-anchor='middle' fill='white' font-family='system-ui,sans-serif' font-size='10' font-weight='700'%3EEF%3C/text%3E%3C/svg%3E"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">Entity Framework</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="GoHighLevel (funnels / CRM)"
+            >
+              <span class="relative flex h-9 w-9 shrink-0 items-center justify-center">
+                <img
+                  src="https://api.iconify.design/mdi:funnel-outline.svg?color=%231e293b"
+                  alt=""
+                  width="36"
+                  height="36"
+                  class="h-9 w-9 object-contain opacity-90 dark:hidden"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <img
+                  src="https://api.iconify.design/mdi:funnel-outline.svg?color=%23f8fafc"
+                  alt=""
+                  width="36"
+                  height="36"
+                  class="hidden h-9 w-9 object-contain opacity-90 dark:block"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </span><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">GoHighLevel</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="REST APIs"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/openapi/openapi-plain.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">REST APIs</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="Docker"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/docker/docker-plain.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">Docker</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="Git"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/git/git-original.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">Git</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="Vercel"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/vercel/vercel-line.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain invert-0 dark:invert"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">Vercel</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="AWS"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+                alt=""
+                width="72"
+                height="36"
+                class="h-7 w-full max-w-[4.5rem] shrink-0 object-contain object-center"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">AWS</span>
+            </li>
+            <li
+              class="flex min-h-[118px] flex-col items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-2 py-3 text-center shadow-sm transition hover:border-coral/40 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:shadow-none dark:hover:border-coral/35 dark:hover:bg-white/10"
+              title="SEO fundamentals"
+            >
+              <img
+                src="https://cdn.jsdelivr.net/npm/simple-icons@11.14.0/icons/googlesearchconsole.svg"
+                alt=""
+                width="36"
+                height="36"
+                class="skill-icon-mono h-9 w-9 object-contain"
+                loading="lazy"
+                decoding="async"
+              /><span class="max-w-full break-words text-[11px] font-medium leading-snug text-slate-700 sm:text-xs dark:text-slate-300">SEO fundamentals</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Work grid -->
+      <section id="work" class="px-4 py-20 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-6xl">
+          <h2 class="font-display text-4xl text-ink-950 sm:text-5xl dark:text-white">
+            Selected client &amp; product work
+          </h2>
+          <p class="mt-3 max-w-2xl text-slate-600 dark:text-slate-400">
+            Project tiles use screenshots from the
+            <code class="rounded border border-slate-200 bg-slate-100 px-1.5 py-0.5 text-sm text-slate-800 dark:border-white/10 dark:bg-white/10 dark:text-slate-300"
+              >images/</code
+            >
+            folder when available; anything without a local file falls back to a
+            live capture service. Open each link for the live site.
+          </p>
+
+          <div class="mt-14 space-y-16">
+            <!-- WordPress -->
+            <div>
+              <h3 class="text-sm font-semibold uppercase tracking-widest text-coral">
+                WordPress
+              </h3>
+              <div
+                class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                data-project-grid
+              >
+                <!-- cards injected pattern: repeat for each URL -->
+              </div>
+            </div>
+
+            <!-- GHL -->
+            <div>
+              <h3 class="text-sm font-semibold uppercase tracking-widest text-coral">
+                GoHighLevel
+              </h3>
+              <div
+                class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                id="grid-ghl"
+              ></div>
+            </div>
+
+            <!-- React / custom -->
+            <div>
+              <h3 class="text-sm font-semibold uppercase tracking-widest text-coral">
+                React &amp; custom sites
+              </h3>
+              <div
+                class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                id="grid-react"
+              ></div>
+            </div>
+
+            <!-- Personal -->
+            <div id="projects">
+              <h3 class="text-sm font-semibold uppercase tracking-widest text-coral">
+                Personal projects
+              </h3>
+              <div
+                class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                id="grid-personal"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section
+        id="contact"
+        class="border-t border-slate-200/80 bg-gradient-to-b from-slate-100 to-slate-50 px-4 py-24 sm:px-6 lg:px-8 dark:border-white/5 dark:from-ink-900/80 dark:to-ink-950"
+      >
+        <div class="mx-auto max-w-3xl text-center">
+          <h2 class="font-display text-4xl text-ink-950 sm:text-5xl dark:text-white">
+            Let’s build something sharp.
+          </h2>
+          <p class="mt-4 text-slate-600 dark:text-slate-400">
+            Reach out for freelance, contract, or full-time frontend roles.
+          </p>
+          <div
+            class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+          >
+            <a
+              href="mailto:cedriclabrador@gmail.com"
+              class="inline-flex w-full items-center justify-center rounded-full bg-coral px-8 py-3.5 text-sm font-semibold text-white shadow-glow transition hover:bg-coral-dim sm:w-auto"
+              >cedriclabrador@gmail.com</a
+            >
+            <a
+              href="tel:+639766515174"
+              class="inline-flex w-full items-center justify-center rounded-full border border-slate-300 bg-white px-8 py-3.5 text-sm font-semibold text-ink-950 transition hover:border-coral/50 dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:border-coral/40 sm:w-auto"
+              >+63 976 651 5174</a
+            >
+          </div>
+          <a
+            href="https://drive.google.com/file/d/17dDhGzM4rJNRXvb2J304MuC3FObcjgMB/view"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-6 inline-block text-sm font-medium text-coral hover:text-coral-dim dark:hover:text-white"
+            >Download CV (Google Drive) →</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-slate-200/80 bg-white/50 px-4 py-10 sm:px-6 lg:px-8 dark:border-white/5 dark:bg-transparent">
+      <div
+        class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 text-sm text-slate-600 sm:flex-row dark:text-slate-500"
+      >
+        <p>© <span id="y"></span> Cedric de Vera Labrador. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        document.getElementById("y").textContent = new Date().getFullYear();
+
+        var placeholderSvg =
+          "data:image/svg+xml," +
+          encodeURIComponent(
+            '<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520"><rect fill="#e2e8f0" width="900" height="520"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#64748b" font-family="system-ui,sans-serif" font-size="18">Preview unavailable</text></svg>'
+          );
+
+        function thumbUrl(siteUrl) {
+          return (
+            "https://image.thum.io/get/width/900/crop/520/noanimate/" +
+            encodeURIComponent(siteUrl)
+          );
+        }
+
+        /** Local screenshots in /images (add a PNG and map the exact project URL). */
+        var localThumbByUrl = {
+          "https://webpuppies.com.sg/": "images/webpuppies.png",
+          "https://thompsoncooling.com.au/": "images/thompsoncooling.png",
+          "https://www.nbcustombuilds.com.au/": "images/nbcustombuilds.png",
+          "https://www.theplumbinggang.com/": "images/plumbinggang.png",
+          "https://smithkonhomebuilders.com.au/": "images/smithkonhomebuilders.png",
+          "https://marway.com.au/": "images/marway.png",
+          "https://redrooskipbins.com.au/":
+            "images/" + encodeURIComponent("red roo.png"),
+          "https://ac.morningtonpeninsulaservices.com.au/": "images/mornington.png",
+          "https://intric.club/en": "images/intricclub.png",
+          "https://toptrailhorse.com/": "images/toptrail.png",
+          "https://jobs.joblu.io/": "images/joblu.png",
+          "https://vidmetrics-mu.vercel.app/": "images/vidmetrics.png",
+          "https://pos-plum-seven.vercel.app/": "images/pos.png",
+        };
+
+        function projectThumbUrl(siteUrl) {
+          return localThumbByUrl[siteUrl] || thumbUrl(siteUrl);
+        }
+
+        function card({ title, url, note, tags }) {
+          var host = "";
+          try {
+            host = new URL(url).hostname.replace(/^www\./, "");
+          } catch (e) {
+            host = title;
+          }
+          var imgSrc = projectThumbUrl(url);
+          var isLocalShot = imgSrc.indexOf("images/") === 0;
+          var badgeLabel = isLocalShot ? "Screenshot" : "Live preview";
+          var tagHtml = (tags || [])
+            .map(function (t) {
+              return (
+                '<span class="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-slate-600 dark:bg-white/5 dark:text-slate-400">' +
+                t +
+                "</span>"
+              );
+            })
+            .join(" ");
+
+          return (
+            '<article class="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:border-coral/40 hover:shadow-md dark:border-white/10 dark:bg-ink-900/40 dark:shadow-none dark:hover:border-coral/30 dark:hover:shadow-glow">' +
+            '<a href="' +
+            url +
+            '" target="_blank" rel="noopener noreferrer" class="relative block aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-ink-800">' +
+            '<img src="' +
+            imgSrc +
+            '" alt="Snapshot of ' +
+            host +
+            '" class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'' +
+            placeholderSvg +
+            '\';this.classList.add(\'opacity-90\')" />' +
+            '<span class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-50/95 via-transparent to-transparent dark:from-ink-950/90"></span>' +
+            '<span class="absolute bottom-3 left-3 rounded-full bg-slate-900/55 px-2 py-0.5 text-[10px] font-medium text-white backdrop-blur dark:bg-black/50">' +
+            badgeLabel +
+            "</span>" +
+            "</a>" +
+            '<div class="flex flex-1 flex-col p-5">' +
+            '<h4 class="font-semibold text-ink-950 dark:text-white">' +
+            title +
+            "</h4>" +
+            '<p class="mt-1 text-xs text-slate-600 dark:text-slate-500">' +
+            host +
+            "</p>" +
+            (note
+              ? '<p class="mt-2 text-sm text-slate-600 dark:text-slate-400">' + note + "</p>"
+              : "") +
+            '<div class="mt-3 flex flex-wrap gap-1.5">' +
+            tagHtml +
+            "</div>" +
+            '<a href="' +
+            url +
+            '" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-coral transition group-hover:gap-2">' +
+            "Visit site →" +
+            "</a>" +
+            "</div>" +
+            "</article>"
+          );
+        }
+
+        var wordpress = [
+          {
+            title: "Webpuppies",
+            url: "https://webpuppies.com.sg/",
+            tags: ["WordPress", "Agency"],
+          },
+          {
+            title: "Thompson Cooling",
+            url: "https://thompsoncooling.com.au/",
+            tags: ["WordPress"],
+          },
+          {
+            title: "NB Custom Builds",
+            url: "https://www.nbcustombuilds.com.au/",
+            tags: ["WordPress"],
+          },
+          {
+            title: "The Plumbing Gang",
+            url: "https://www.theplumbinggang.com/",
+            tags: ["WordPress"],
+          },
+          {
+            title: "Smithkon Home Builders",
+            url: "https://smithkonhomebuilders.com.au/",
+            tags: ["WordPress"],
+          },
+          {
+            title: "Marway",
+            url: "https://marway.com.au/",
+            tags: ["WordPress"],
+          },
+        ];
+
+        var ghl = [
+          {
+            title: "Red Roo Skip Bins",
+            url: "https://redrooskipbins.com.au/",
+            tags: ["GHL", "Funnel"],
+          },
+          {
+            title: "Mornington Peninsula Services",
+            url: "https://ac.morningtonpeninsulaservices.com.au/",
+            tags: ["GHL"],
+          },
+        ];
+
+        var react = [
+          {
+            title: "Intric Club",
+            url: "https://intric.club/en",
+            tags: ["React", "Custom"],
+          },
+          {
+            title: "Top Trail Horse",
+            url: "https://toptrailhorse.com/",
+            tags: ["React", "Custom"],
+          },
+          {
+            title: "Joblu Jobs",
+            url: "https://jobs.joblu.io/",
+            tags: ["React", "App"],
+          },
+        ];
+
+        var personal = [
+          {
+            title: "Vidmetrics",
+            url: "https://vidmetrics-mu.vercel.app/",
+            tags: ["Next.js", "Vercel"],
+            note: "Analytics-style personal build on Vercel.",
+          },
+          {
+            title: "POS Plum",
+            url: "https://pos-plum-seven.vercel.app/",
+            tags: ["React", "Vercel"],
+            note: "Point-of-sale concept / demo.",
+          },
+          {
+            title: "Bootstrap demo",
+            url: "https://website-demo-1.github.io/",
+            tags: ["Bootstrap", "Static"],
+            note: "Bootstrap layout sample on GitHub Pages.",
+          },
+        ];
+
+        function render(id, items) {
+          var el = document.getElementById(id);
+          if (!el) return;
+          el.innerHTML = items.map(card).join("");
+        }
+
+        var wpGrid = document.querySelector("[data-project-grid]");
+        if (wpGrid) wpGrid.innerHTML = wordpress.map(card).join("");
+
+        render("grid-ghl", ghl);
+        render("grid-react", react);
+        render("grid-personal", personal);
+
+        var themeKey = "portfolio-theme";
+        var themeBtn = document.getElementById("theme-toggle");
+        function syncThemeToggle() {
+          if (!themeBtn) return;
+          var dark = document.documentElement.classList.contains("dark");
+          themeBtn.setAttribute("aria-pressed", dark ? "true" : "false");
+        }
+        function applyPortfolioTheme(mode) {
+          if (mode === "light") {
+            document.documentElement.classList.remove("dark");
+          } else {
+            document.documentElement.classList.add("dark");
+          }
+          try {
+            localStorage.setItem(themeKey, mode);
+          } catch (e) {}
+          syncThemeToggle();
+        }
+        if (themeBtn) {
+          syncThemeToggle();
+          themeBtn.addEventListener("click", function () {
+            var dark = document.documentElement.classList.contains("dark");
+            applyPortfolioTheme(dark ? "light" : "dark");
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
