@@ -7,14 +7,11 @@
         try {
           var k = "portfolio-theme";
           var t = localStorage.getItem(k);
-          if (t === "light") document.documentElement.classList.remove("dark");
-          else if (t === "dark") document.documentElement.classList.add("dark");
-          else {
-            if (window.matchMedia("(prefers-color-scheme: light)").matches)
-              document.documentElement.classList.remove("dark");
-            else document.documentElement.classList.add("dark");
-          }
-        } catch (e) {}
+          if (t === "dark") document.documentElement.classList.add("dark");
+          else document.documentElement.classList.remove("dark");
+        } catch (e) {
+          document.documentElement.classList.remove("dark");
+        }
       })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -208,7 +205,7 @@
             class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl dark:text-slate-400"
           >
             Hi, I’m <strong class="font-semibold text-ink-950 dark:text-slate-200">Cedric</strong
-            >—I build responsive, high-performing web applications. I mainly work
+            >—I build responsive, high-performing web applications.<br>I mainly work
             with React, Next.js, Tailwind CSS, Bootstrap, and WordPress, plus
             Node.js, Laravel, .NET, GoHighLevel, and cloud tooling on Vercel
             and AWS. I use AI-assisted workflows to move faster while keeping
@@ -1071,12 +1068,6 @@
             url: "https://pos-plum-seven.vercel.app/",
             tags: ["React", "Vercel"],
             note: "Point-of-sale concept / demo.",
-          },
-          {
-            title: "Bootstrap demo",
-            url: "https://website-demo-1.github.io/",
-            tags: ["Bootstrap", "Static"],
-            note: "Bootstrap layout sample on GitHub Pages.",
           },
         ];
 
